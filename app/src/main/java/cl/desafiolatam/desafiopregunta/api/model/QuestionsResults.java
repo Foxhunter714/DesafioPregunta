@@ -1,9 +1,13 @@
-package cl.desafiolatam.desafiopregunta;
+package cl.desafiolatam.desafiopregunta.api.model;
+
+import com.google.gson.annotations.SerializedName;
 
 public class QuestionsResults {
     private String difficulty;
     private String question;
+    @SerializedName("correct_answer")
     private String correct_answer;
+    @SerializedName("incorrect_answer")
     private String[] incorrect_answers;
     private String category;
     private String type;

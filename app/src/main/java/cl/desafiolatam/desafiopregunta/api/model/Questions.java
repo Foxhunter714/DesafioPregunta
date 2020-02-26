@@ -1,8 +1,9 @@
-package cl.desafiolatam.desafiopregunta;
+package cl.desafiolatam.desafiopregunta.api.model;
 
 public class Questions {
     private int response_code;
     private QuestionsResults[] results;
+
 
     public int getResponse_code() {
         return this.response_code;
