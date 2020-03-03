@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -60,15 +62,40 @@ public class MainFragment extends Fragment {
         pregunta.setText(resultList.get(0).getQuestion());
         categoria.setText(resultList.get(0).getCategory());
         dificultad.setText(resultList.get(0).getDifficulty());
+        boolean correcta = resultList.get(0).isCorrect_answer();
         RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
-        int numero = radioGroup.getCheckedRadioButtonId();
-        Log.d("Fragment", String.valueOf(numero));
-        if (numero == 1){
-            Log.d("Fragment", "verdadero");
-        } else if (numero == 2){
-            Log.d("Fragment", "falso");
-        } else {
-            Log.d("Fragment", "No encontrado");
-        }
+        Button button = view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int numero = radioGroup.getCheckedRadioButtonId();
+                Log.d("Fragment", String.valueOf(numero));
+                if (numero == R.id.radioButton){
+                    Log.d("Fragment", "verdadero");
+                    Log.d("Fragment", String.valueOf(correcta));
+                    boolean prueba = false;
+                    if (prueba == correcta){
+                        Toast.makeText(getContext(), "Respuesta Incorrecta", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Respuesta Correcta", Toast.LENGTH_SHORT).show();
+
+                    }
+                } else if (numero == R.id.radioButton2){
+                    Log.d("Fragment", "falso");
+                    boolean prueba = true;
+                    if (prueba == correcta){
+                        Toast.makeText(getContext(), "Respuesta Incorrecta", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Respuesta Correcta", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+                    Log.d("Fragment", "No encontrado");
+                }
+
+            }
+        });
+
     }
 }
