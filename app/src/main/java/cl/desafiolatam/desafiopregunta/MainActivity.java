@@ -45,18 +45,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 // En caso de respuesta positiva
-                Log.d(TAG, "procesando respuesta");
+                //Log.d(TAG, "procesando respuesta");
                 // Obtenemos desde el body la lista de pregunta
-                List <Question> questionList = response.body().getResults();
+               List <Question> questionList = response.body().getResults();
                 // imprimir los resultados
-                String question1;
-                question1 = questionList.get(0).getQuestion();
-                Toast.makeText(MainActivity.this, questionList.get(0).getQuestion(), Toast.LENGTH_SHORT).show();
-                        Log.d("MainActivity","onResponse: " + questionList.get(0).getQuestion());
-                MainFragment mainFragment = new MainFragment();
+                //String question1;
+                //question1 = questionList.get(0).getQuestion();
+                //Toast.makeText(MainActivity.this, questionList.get(1).getCategory(), Toast.LENGTH_SHORT).show();
+                     Log.d("MainActivity","onResponse: " + response.code());
+                Log.d("MainActivity","onResponse: " + response.body().getResults().get(0));
+
+                MainFragment mainFragment = new MainFragment(questionList);
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, mainFragment.newInstance(question1))
-                        .commit();
+                        .add(R.id.container, mainFragment).commit();
 
             }
 
